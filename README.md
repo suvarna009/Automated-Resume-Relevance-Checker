@@ -1,5 +1,4 @@
-# 🧠 Automated Resume Relevance Checker 
-# (Two way Portal - For Candidates & Companies)
+# 🧠 Automated Resume Relevance Checker (Two way Portal - For Candidates & Companies)
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python&logoColor=white) 
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.27.0-orange?style=flat-square&logo=streamlit&logoColor=white) 
@@ -178,6 +177,7 @@ db.commit()
 - Export candidate reports as PDF  
 - Mini-charts in candidate history for visual performance tracking  
 - Email notifications for new job postings
+
 
 
 
