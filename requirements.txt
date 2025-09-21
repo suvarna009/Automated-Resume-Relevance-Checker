@@ -25,3 +25,12 @@ tqdm==4.66.1
 
 # Optional for advanced LLM feedback
 openai==0.28.0
+
+streamlit
+sqlalchemy
+sqlalchemy-utils
+pandas
+scikit-learn
+python-docx
+PyPDF2
+matplotlib
