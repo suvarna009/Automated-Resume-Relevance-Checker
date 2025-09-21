@@ -101,7 +101,7 @@ This project is a **multi-role web dashboard** that automatically matches resume
 ### 1. Clone the Repository
 ```bash
 https://github.com/suvarna009/Automated-Resume-Relevance-Checker.git
-cd resume-matcher
+cd Automated-Resume-Relevance-Checker
 ```
 
 ### 2. Create Virtual Environment
@@ -177,6 +177,7 @@ db.commit()
 - Export candidate reports as PDF  
 - Mini-charts in candidate history for visual performance tracking  
 - Email notifications for new job postings
+
 
 
 
