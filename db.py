@@ -1,71 +1,66 @@
-# db.py
-import os
-from sqlalchemy import create_engine, Column, Integer, String, Text, Float, DateTime, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy import create_engine, Column, Integer, String, Text, Float, DateTime
+from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
-BASE_DIR = os.path.dirname(__file__)
-DB_PATH = os.path.join(BASE_DIR, "app.db")
-DATABASE_URL = f"sqlite:///{DB_PATH}"
-
+# -------------------- Database setup --------------------
+SQLALCHEMY_DATABASE_URL = "sqlite:///app.db"
 engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 Base = declarative_base()
 
+# -------------------- Models --------------------
 
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, default="")
-    email = Column(String, default="")
-    role = Column(String, default="candidate")  # candidate | company | admin
+    username = Column(String(128), unique=True, nullable=False)
+    hashed_password = Column(String(256), nullable=False)
+    role = Column(String(32), nullable=False)  # "candidate" or "company"
     created_at = Column(DateTime, default=datetime.utcnow)
+
+    def set_password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.hashed_password, password)
 
 
 class Job(Base):
     __tablename__ = "jobs"
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    company_name = Column(String, default="")
-    location = Column(String, default="")
-    jd_text = Column(Text, default="")
-    must_skills = Column(Text, default="")   # comma separated
-    nice_skills = Column(Text, default="")   # comma separated
+    title = Column(String(256), nullable=False)
+    description_text = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 
 class Resume(Base):
     __tablename__ = "resumes"
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
-    filename = Column(String)
-    filepath = Column(String)
-    parsed_text = Column(Text)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    user = relationship("User", backref="resumes")
+    filename = Column(String(256), nullable=False)
+    content_text = Column(Text, nullable=False)
+    uploaded_at = Column(DateTime, default=datetime.utcnow)
 
 
 class Match(Base):
     __tablename__ = "matches"
     id = Column(Integer, primary_key=True, index=True)
-    job_id = Column(Integer, ForeignKey("jobs.id"))
-    resume_id = Column(Integer, ForeignKey("resumes.id"))
-    hard_score = Column(Float)  # percent 0-100
-    soft_score = Column(Float)  # percent 0-100
-    total_score = Column(Float)  # percent 0-100
-    verdict = Column(String)     # High/Medium/Low
-    missing_must = Column(Text)  # csv
-    missing_nice = Column(Text)  # csv
-    feedback = Column(Text)
+    resume_id = Column(Integer, nullable=False)
+    job_id = Column(Integer, nullable=False)
+    score = Column(Float, nullable=False)
+    feedback = Column(Text, nullable=True)
+    matched_skills = Column(Text, nullable=True)
+    missing_skills = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 
+# -------------------- Create tables --------------------
 def init_db():
-    if not os.path.exists(DB_PATH):
-        Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
 
-# Initialize DB on import (safe)
-init_db()
+if __name__ == "__main__":
+    init_db()
+    print("Database tables created successfully ✅")
