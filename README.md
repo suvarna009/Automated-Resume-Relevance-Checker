@@ -17,7 +17,7 @@
 
 > **Quick Start / Demo** 🚀  
 > Get the app running in under 2 minutes:  
-> 1️⃣ Clone repo: `git clone https://github.com/your-username/resume-matcher.git && cd resume-matcher`  
+> 1️⃣ Clone repo: https://github.com/suvarna009/Automated-Resume-Relevance-Checker.git  
 > 2️⃣ Create virtual environment: `python -m venv venv && source venv/bin/activate` (Linux/Mac) or `venv\Scripts\activate` (Windows)  
 > 3️⃣ Install dependencies: `pip install -r requirements.txt`  
 > 4️⃣ Run the app: `streamlit run app.py`  
@@ -100,7 +100,7 @@ This project is a **multi-role web dashboard** that automatically matches resume
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/resume-matcher.git
+https://github.com/suvarna009/Automated-Resume-Relevance-Checker.git
 cd resume-matcher
 ```
 
@@ -177,6 +177,7 @@ db.commit()
 - Export candidate reports as PDF  
 - Mini-charts in candidate history for visual performance tracking  
 - Email notifications for new job postings
+
 
 
 
