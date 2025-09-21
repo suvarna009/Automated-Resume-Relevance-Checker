@@ -1,9 +1,8 @@
 streamlit
 sqlalchemy
-sqlalchemy-utils
+werkzeug
 pandas
-scikit-learn
+numpy
 python-docx
 PyPDF2
-matplotlib
-
+scikit-learn
