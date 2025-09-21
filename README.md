@@ -134,21 +134,8 @@ resume-matcher/
 ├── requirements.txt       # Python dependencies
 ├── README.md              # Project documentation
 ├── .venv/                 # Virtual environment (optional)
-└── screenshots/           # Optional screenshots for UI
 ```
 
----
-
-## 📸 Screenshots
-
-### Candidate Dashboard
-![Candidate Dashboard]("C:\Users\lenovo\Desktop\Code4Fest\resume_matcher_streamlit\screenshots\Screenshot 2025-09-21 102853.png")  
-
-### Company Dashboard (Batch Analysis)
-![Company Dashboard]("C:\Users\lenovo\Desktop\Code4Fest\resume_matcher_streamlit\screenshots\Screenshot 2025-09-21 103208.png")  
-
-### Login Page
-![Login Page]("C:\Users\lenovo\Desktop\Code4Fest\resume_matcher_streamlit\screenshots\Screenshot 2025-09-21 103039.png")  
 ---
 
 ## 🌐 Deployment Instructions
@@ -190,3 +177,4 @@ db.commit()
 - Export candidate reports as PDF  
 - Mini-charts in candidate history for visual performance tracking  
 - Email notifications for new job postings
+
